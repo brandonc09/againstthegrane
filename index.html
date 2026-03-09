@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Against the Grain | Custom Craft & Automation</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Against The Grane | Custom Craft & Automation</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -19,56 +20,157 @@
             }
         }
     </script>
+
     <style>
-        .wood-grain { background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); }
-        .glass { background: rgba(61, 43, 31, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(217, 119, 6, 0.2); }
-        .glow-border { position: relative; }
-        .glow-border:hover { box-shadow: 0 0 15px rgba(217, 119, 6, 0.5); transition: 0.3s; }
+        .wood-grain {
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+        }
+
+        .glass {
+            background: rgba(61, 43, 31, 0.72);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(217, 119, 6, 0.2);
+        }
+
+        .glow-border:hover {
+            box-shadow: 0 0 18px rgba(217, 119, 6, 0.35);
+            transition: 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-espresso text-gray-100 font-sans wood-grain">
 
-    <section class="min-h-screen flex items-center px-8">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+    <!-- NAV -->
+    <nav class="sticky top-0 z-50 bg-espresso/90 backdrop-blur border-b border-amber/20">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="text-xl md:text-2xl font-bold tracking-wide">
+                Against The Grane
+            </div>
+
+            <div class="flex gap-5 md:gap-8 text-sm md:text-base">
+                <a href="#about" class="hover:text-amber transition">About</a>
+                <a href="#services" class="hover:text-amber transition">Services</a>
+                <a href="#contact" class="hover:text-amber transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="min-h-screen flex items-center px-6 md:px-8">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center w-full py-16">
+
             <div>
-                <h1 class="text-6xl font-bold mb-6 leading-tight">Building Legacy, <span class="text-amber">Against the Grain.</span></h1>
-                <p class="text-xl mb-8 text-gray-300">Custom woodworking, smart home sorcery, and sensory spaces built to outlast us.</p>
-                <button class="px-8 py-4 bg-transparent border-2 border-amber text-amber font-bold rounded-lg glow-border hover:bg-amber hover:text-white transition">
-                    Book a Consultation
-                </button>
+                <p class="uppercase tracking-[0.2em] text-amber text-sm mb-4">
+                    Custom Craft • Automation • Problem Solving
+                </p>
+
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Building Legacy,
+                    <span class="text-amber">Against the Grain.</span>
+                </h1>
+
+                <p class="text-lg md:text-xl mb-8 text-gray-300 leading-relaxed max-w-xl">
+                    Custom woodworking, smart home installs, and practical builds designed to solve real problems and stand the test of time.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="mailto:brc121990@gmail.com?subject=Project Inquiry - Against The Grane"
+                       class="inline-block px-8 py-4 bg-amber text-white font-bold rounded-lg hover:bg-orange-600 transition text-center">
+                        Request a Quote
+                    </a>
+
+                    <a href="#services"
+                       class="inline-block px-8 py-4 bg-transparent border-2 border-amber text-amber font-bold rounded-lg glow-border hover:bg-amber hover:text-white transition text-center">
+                        View Services
+                    </a>
+                </div>
             </div>
-            <div class="h-96 bg-walnut rounded-2xl flex items-center justify-center border border-amber/30">
-                <p class="text-amber/50 italic">[Workshop / Hero Image Placeholder]</p>
+
+            <div class="h-80 md:h-96 rounded-2xl overflow-hidden border border-amber/30 bg-walnut flex items-center justify-center">
+                <!-- Replace hero-workshop.jpg with your real image file later -->
+                <img src="hero-workshop.jpg" alt="Against The Grane workshop or project"
+                     class="w-full h-full object-cover hidden"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="w-full h-full flex items-center justify-center">
+                    <p class="text-amber/50 italic">Add your workshop or project photo here</p>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <section class="py-20 bg-forest/50">
-        <div class="max-w-4xl mx-auto px-8 text-center">
-            <h2 class="text-4xl mb-8">Who's making the sawdust?</h2>
+    <!-- ABOUT -->
+    <section id="about" class="py-20 bg-forest/50">
+        <div class="max-w-4xl mx-auto px-6 md:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl mb-8 font-semibold">Who’s making the sawdust?</h2>
             <p class="text-lg leading-relaxed text-gray-300">
-                Marine Corps veteran, full-time dad, and the guy who prefers a well-calibrated chisel to a corporate meeting. I don't just fix things; I figure out how they broke and build them back better. Fueled by high-octane coffee and a refusal to cut corners.
+                Against The Grane is built around craftsmanship, curiosity, and doing things differently. Founded by a Marine Corps veteran, this brand brings together woodworking, smart home technology, and practical problem solving to create durable, useful, and distinctive solutions.
             </p>
         </div>
     </section>
 
-    <section class="py-20 px-8">
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass p-8 rounded-xl">
-                <h3 class="text-xl font-bold mb-4">Custom Woodworking</h3>
-                <p class="text-sm text-gray-400">Heirloom quality builds that turn raw timber into permanent solutions.</p>
+    <!-- SERVICES -->
+    <section id="services" class="py-20 px-6 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-4">Services</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Built for homeowners, makers, and anyone who wants something done right.
+                </p>
             </div>
-            <div class="glass p-8 rounded-xl">
-                <h3 class="text-xl font-bold mb-4">Smart Home Sorcery</h3>
-                <p class="text-sm text-gray-400">Automation systems that actually work, tailored to your lifestyle.</p>
-            </div>
-            <div class="glass p-8 rounded-xl">
-                <h3 class="text-xl font-bold mb-4">Sensory Spaces</h3>
-                <p class="text-sm text-gray-400">Adaptive, calm environments designed with real-world empathy.</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">Custom Woodworking</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        Furniture, feature pieces, built-ins, and practical custom work made with attention to detail and long-term durability.
+                    </p>
+                </div>
+
+                <div class="glass p-8 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">Smart Home Installation</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        Cameras, automation, networking, and connected home solutions that are set up to actually work in the real world.
+                    </p>
+                </div>
+
+                <div class="glass p-8 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">Home Repair & Upgrades</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        Creative repairs, practical upgrades, and hands-on solutions for homes that need more than a quick patch job.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- CONTACT -->
+    <section id="contact" class="py-20 bg-forest/60">
+        <div class="max-w-3xl mx-auto px-6 md:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl mb-6 font-semibold">Let’s Build Something Different</h2>
+            <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                Need custom woodworking, smart home help, or a practical build solution? Reach out and let’s talk through your project.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:brc121990@gmail.com?subject=Project Inquiry - Against The Grane"
+                   class="inline-block px-8 py-4 bg-amber text-white font-bold rounded-lg hover:bg-orange-600 transition">
+                    Email Brandon
+                </a>
+
+                <a href="https://againstthegrane.com"
+                   class="inline-block px-8 py-4 border border-amber text-amber font-bold rounded-lg hover:bg-amber hover:text-white transition">
+                    Refresh Site
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-gray-400 text-sm border-t border-amber/20 px-6">
+        <p>© 2026 Against The Grane</p>
+        <p class="mt-2">Built different. Crafted with purpose.</p>
+    </footer>
+
 </body>
 </html>
-
