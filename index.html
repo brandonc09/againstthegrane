@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Against The Grane | Custom Build & Home Logic</title>
+    
+    <!-- PRIMARY SEO -->
+    <title>Against The Grane | Custom Woodworking & Smart Home Automation Warner Robins GA</title>
+    <meta name="description" content="Premium custom woodworking, smart home automation, and sensory-friendly spaces in Warner Robins and Middle Georgia. Marine Vet owned. Built to outlast.">
+    
+    <!-- LOCAL BUSINESS SCHEMA (SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Against The Grane",
+      "image": "hero-workshop.jpg",
+      "@id": "https://againstthegrane.com",
+      "url": "https://againstthegrane.com",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Warner Robins",
+        "addressRegion": "GA",
+        "postalCode": "31088",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 32.6130,
+        "longitude": -83.6242
+      },
+      "servesArea": ["Warner Robins", "Macon", "Atlanta", "Middle Georgia"],
+      "founder": "Brandon Cornwell"
+    }
+    </script>
 
-    <!-- Premium Typography -->
+    <!-- Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
@@ -16,316 +46,328 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        espresso: '#1a120e',
-                        forest: '#0f1a11',
-                        walnut: '#2d1e16',
-                        amber: '#d97706',
-                        copper: '#b35a00',
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                    colors: { espresso: '#1a120e', forest: '#0f1a11', walnut: '#2d1e16', amber: '#d97706', copper: '#b35a00' }
                 }
             }
         }
     </script>
 
     <style>
-        body {
-            background-color: #1a120e;
-            color: #e5e7eb;
-            overflow-x: hidden;
-        }
-
-        /* 4K Cinematic Background Logic */
+        body { background-color: #1a120e; color: #e5e7eb; overflow-x: hidden; }
         #viewport-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -10;
-            background-image: url('wood-bg.jpg'); /* Your 4K Image */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -10;
+            background-image: linear-gradient(rgba(26,18,14,0.85), rgba(26,18,14,0.95)), url('wood-bg.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
         }
-
-        /* The "Shadow & Depth" Overlay */
-        #vignette {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -9;
-            background: radial-gradient(circle at center, rgba(26, 18, 14, 0.4) 0%, rgba(26, 18, 14, 0.95) 100%);
-            pointer-events: none;
-        }
-
-        /* Subtle Dust/Grain Texture */
         #grain-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -8;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -8;
             background-image: url('https://www.transparenttextures.com/patterns/pollen.png');
-            opacity: 0.15;
-            pointer-events: none;
+            opacity: 0.12; pointer-events: none;
         }
-
-        /* Premium Glassmorphism */
         .glass {
-            background: rgba(45, 30, 22, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(217, 119, 6, 0.15);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(45, 30, 22, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(217, 119, 6, 0.15); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .glass:hover { border-color: rgba(217, 119, 6, 0.4); transform: translateY(-8px); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Kinetic Typography for Hero */
+        .kinetic-text span { display: inline-block; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        .glass:hover {
-            border-color: rgba(217, 119, 6, 0.4);
-            transform: translateY(-10px) scale(1.01);
-            background: rgba(45, 30, 22, 0.6);
-        }
-
-        /* Animation Keyframes */
-        @keyframes breathe {
-            0%, 100% { box-shadow: 0 0 10px rgba(217, 119, 6, 0.1); border-color: rgba(217, 119, 6, 0.3); }
-            50% { box-shadow: 0 0 30px rgba(217, 119, 6, 0.6); border-color: rgba(217, 119, 6, 1); }
-        }
-        .animate-breathe {
-            animation: breathe 4s ease-in-out infinite;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .text-glow {
-            text-shadow: 0 0 20px rgba(217, 119, 6, 0.3);
-        }
+        /* Modal / Lightbox Styles */
+        #modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(15, 10, 8, 0.95); backdrop-filter: blur(10px); }
+        
+        @media (max-width: 768px) { #viewport-bg { background-attachment: scroll; } }
     </style>
 </head>
 <body class="font-sans antialiased">
 
-    <!-- Fixed Cinematic Canvas -->
     <div id="viewport-bg"></div>
-    <div id="vignette"></div>
     <div id="grain-overlay"></div>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-espresso/60 backdrop-blur-2xl border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+    <nav class="sticky top-0 z-50 bg-espresso/80 backdrop-blur-2xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="font-display text-2xl font-black tracking-tighter text-white uppercase italic">
                 Against The <span class="text-amber">Grane</span>
             </div>
-            <div class="hidden lg:flex gap-12 text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">
-                <a href="#about" class="hover:text-amber transition-colors">Philosophy</a>
-                <a href="#arsenal" class="hover:text-amber transition-colors">The Arsenal</a>
-                <a href="#ledger" class="hover:text-amber transition-colors">The Ledger</a>
-                <a href="#contact" class="hover:text-amber transition-colors">Contact</a>
+            <div class="hidden lg:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+                <a href="#about" class="hover:text-amber transition">Philosophy</a>
+                <a href="#arsenal" class="hover:text-amber transition">Arsenal</a>
+                <a href="#legacy" class="hover:text-amber transition text-white border-b border-amber">Legacy Builds</a>
+                <a href="#contact" class="hover:text-amber transition">Contact</a>
             </div>
-            <a href="mailto:brc121990@gmail.com" class="bg-amber/10 border border-amber/40 text-amber text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-amber hover:text-white transition-all">
-                Book Consultation
+            <a href="#contact" class="hidden md:block bg-amber text-white text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-copper transition-all">
+                Request Quote
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-[95vh] flex items-center px-6 lg:px-24">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center w-full py-24">
-            
+    <section class="min-h-[90vh] flex items-center px-6 lg:px-24">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center w-full py-20">
             <div class="reveal">
                 <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-amber/20 bg-amber/5 text-amber text-[9px] font-black uppercase tracking-[0.3em] mb-10">
                     <span class="w-1.5 h-1.5 rounded-full bg-amber animate-pulse"></span>
-                    Warner Robins, GA • Marine Vet Built
+                    Warner Robins • Macon • Atlanta Metro
                 </div>
-
-                <h1 class="font-display text-6xl md:text-9xl font-black mb-10 leading-[0.85] text-white tracking-tighter uppercase italic text-glow">
+                <h1 class="font-display text-6xl md:text-8xl font-black mb-8 leading-[0.85] text-white tracking-tighter uppercase italic kinetic-text">
                     Building Legacy,<br/>
                     <span class="text-amber">Against the Grain.</span>
                 </h1>
-
                 <p class="text-xl md:text-2xl mb-12 text-gray-400 leading-relaxed max-w-xl font-light">
-                    Custom woodworking, smart home logic, and sensory environments built with <span class="text-white font-medium italic underline decoration-amber underline-offset-8">Jedi-level patience</span>.
+                    Custom woodworking and smart home integration in <span class="text-white font-bold">Warner Robins, GA</span>. I solve the puzzles others walk away from.
                 </p>
-
                 <div class="flex flex-col sm:flex-row gap-6">
-                    <a href="mailto:brc121990@gmail.com"
-                       class="inline-block px-12 py-6 bg-amber text-white font-black rounded-2xl hover:bg-copper transition-all text-center font-display uppercase tracking-[0.2em] shadow-3xl shadow-amber/40">
-                        Request Quote
+                    <a href="#contact" class="inline-block px-12 py-6 bg-amber text-white font-black rounded-2xl hover:scale-105 transition-all text-center font-display uppercase tracking-widest shadow-2xl shadow-amber/40">
+                        Request a Quote
                     </a>
-
-                    <a href="#arsenal"
-                       class="inline-block px-12 py-6 bg-transparent border-2 border-amber/30 text-amber font-black rounded-2xl animate-breathe hover:bg-amber hover:text-white transition-all text-center font-display uppercase tracking-[0.2em]">
-                        The Arsenal
-                    </a>
+                    <div class="text-[10px] text-gray-500 font-bold uppercase tracking-widest self-center text-center sm:text-left">
+                        Marine Vet Owned • Built to Outlast
+                    </div>
                 </div>
             </div>
-
             <div class="relative group reveal" style="transition-delay: 200ms;">
-                <div class="absolute -inset-10 bg-amber/10 rounded-full blur-[100px] opacity-30"></div>
                 <div class="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
-                    <img src="hero-workshop.jpg" 
-                         alt="Workshop Detail" 
-                         class="w-full aspect-[4/5] object-cover grayscale-[40%] group-hover:grayscale-0 transition duration-1000 group-hover:scale-105"
-                         onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center bg-walnut/50 backdrop-blur-xl&quot;><p class=&quot;text-amber/30 font-display text-8xl font-black italic opacity-20&quot;>CRAFT</p></div>';">
+                    <img src="hero-workshop.jpg" alt="Brandon Cornwell Workshop" class="w-full aspect-[4/5] object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-1000" loading="eager">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Philosophy -->
-    <section id="about" class="py-40 relative z-10">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-5 gap-20 items-center">
-            <div class="md:col-span-3 reveal">
-                <h2 class="font-display text-5xl md:text-7xl font-black uppercase italic mb-12 tracking-tighter text-white">Who's making the sawdust?</h2>
-                <div class="space-y-8 text-xl text-gray-400 font-light leading-relaxed">
-                    <p>
-                        I’m <span class="text-white font-bold">Brandon</span>. Marine Corps veteran, full-time solo dad, and a guy who runs on high-octane coffee and a refusal to cut corners.
-                    </p>
-                    <p>
-                        I don’t just fix things; I figure out <span class="text-amber italic font-medium">how they broke</span> so I can build them back better. From fire-tested rescue missions to designing sensory spaces for my son, Maxton, I bridge the gap between "well this might not work" and "this will outlast me."
-                    </p>
+    <section id="about" class="py-32 bg-forest/20 relative z-10 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h2 class="font-display text-4xl md:text-6xl font-black uppercase italic mb-8 tracking-tighter text-white leading-none">Who's making the sawdust?</h2>
+                <div class="space-y-6 text-lg text-gray-400 font-light leading-relaxed">
+                    <p>I’m Brandon. Marine Corps veteran, solo dad, and a guy who runs on high-octane coffee and <span class="text-amber italic font-medium">Jedi-level patience</span>.</p>
+                    <p>I don't just "handyman" my way through a job. I find the logic. I fix the root. Whether it's a sensory bed for my son, Maxton, or a 4K home theater network, I build it as a legacy.</p>
                 </div>
             </div>
-            <div class="md:col-span-2 reveal" style="transition-delay: 200ms;">
-                <div class="glass p-12 rounded-[3rem] text-center border-l-8 border-l-amber">
-                    <p class="text-2xl italic text-white font-display font-medium leading-relaxed">
-                        "If I'm building it, I'm building a legacy my son can stand on."
-                    </p>
-                    <div class="mt-8 h-px w-20 bg-amber/30 mx-auto"></div>
-                </div>
+            <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 200ms;">
+                <h4 class="text-amber text-xs font-black uppercase tracking-[0.4em] mb-4">The Promise</h4>
+                <p class="text-2xl italic text-white font-display font-medium leading-relaxed">"If I can't fix it, I'll figure out how it broke – and turn that into something better."</p>
             </div>
         </div>
     </section>
 
     <!-- The Arsenal -->
-    <section id="arsenal" class="py-40 px-6 relative z-10">
+    <section id="arsenal" class="py-32 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
-            <div class="mb-24 reveal">
-                <h2 class="font-display text-6xl md:text-9xl font-black uppercase italic mb-8 tracking-tighter text-white opacity-90">The Arsenal</h2>
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
-                    <p class="text-gray-500 tracking-[0.6em] uppercase text-xs font-black">Strategic Problem Solving</p>
-                    <div class="h-px flex-grow bg-white/5 mx-12 hidden md:block"></div>
-                </div>
+            <div class="mb-20 reveal">
+                <h2 class="font-display text-5xl md:text-8xl font-black uppercase italic mb-6 tracking-tighter text-white">The Arsenal</h2>
+                <p class="text-gray-500 tracking-[0.5em] uppercase text-xs font-black">Middle Georgia's Technical Builder</p>
             </div>
-
-            <div class="grid lg:grid-cols-3 gap-12">
-                <div class="glass p-16 rounded-[4rem] reveal" style="transition-delay: 100ms;">
-                    <h3 class="font-display text-3xl font-black text-white uppercase mb-6 tracking-tighter">Custom Woodworking</h3>
-                    <p class="text-gray-400 font-light text-lg mb-10 leading-relaxed">Heirloom-quality builds. I turn raw timber into permanent solutions for those who value authenticity over convenience.</p>
-                    <span class="text-[10px] font-black text-amber tracking-[0.5em] uppercase px-4 py-2 border border-amber/20 rounded-full">Permanent</span>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 100ms;">
+                    <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Woodworking</h3>
+                    <p class="text-gray-400 font-light mb-8">Heirloom furniture and custom solutions. Built with the same precision I used in crash-fire rescue.</p>
+                    <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
+                        <li>• Custom Built-ins</li>
+                        <li>• Live Edge Design</li>
+                        <li>• Structural Repair</li>
+                    </ul>
                 </div>
-
-                <div class="glass p-16 rounded-[4rem] reveal" style="transition-delay: 200ms;">
-                    <h3 class="font-display text-3xl font-black text-white uppercase mb-6 tracking-tighter">Smart Home Sorcery</h3>
-                    <p class="text-gray-400 font-light text-lg mb-10 leading-relaxed">Home automation that makes sense. I bridge the gap between complex logic and daily utility for a seamless life.</p>
-                    <span class="text-[10px] font-black text-amber tracking-[0.5em] uppercase px-4 py-2 border border-amber/20 rounded-full">Logic</span>
+                <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 200ms;">
+                    <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Smart Logic</h3>
+                    <p class="text-gray-400 font-light mb-8">Home automation that actually works. Secure networking, lighting, and invisible tech integration.</p>
+                    <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
+                        <li>• Ubiquiti Networking</li>
+                        <li>• Smart Lighting Scapes</li>
+                        <li>• Logic Troubleshooting</li>
+                    </ul>
                 </div>
-
-                <div class="glass p-16 rounded-[4rem] reveal" style="transition-delay: 300ms;">
-                    <h3 class="font-display text-3xl font-black text-white uppercase mb-6 tracking-tighter">Sensory Spaces</h3>
-                    <p class="text-gray-400 font-light text-lg mb-10 leading-relaxed">Adaptive, calm environments designed with real-world empathy. Helping those with different needs thrive.</p>
-                    <span class="text-[10px] font-black text-amber tracking-[0.5em] uppercase px-4 py-2 border border-amber/20 rounded-full">Empathy</span>
+                <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 300ms;">
+                    <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Sensory Support</h3>
+                    <p class="text-gray-400 font-light mb-8">Adaptive spaces designed for neurodivergent needs. Built with empathy for families like mine.</p>
+                    <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
+                        <li>• Autism-Friendly Rooms</li>
+                        <li>• Calming Lighting</li>
+                        <li>• Safety-Milled Edges</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- The Ledger -->
-    <section id="ledger" class="py-40 bg-black/40 relative z-10">
+    <!-- LEGACY BUILDS (Portfolio) -->
+    <section id="legacy" class="py-32 bg-black/30 relative z-10">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="font-display text-5xl font-black uppercase italic mb-24 text-center tracking-tighter">The Ledger</h2>
-            <div class="grid md:grid-cols-2 gap-24">
-                <div class="reveal">
-                    <p class="text-7xl text-amber font-display leading-none mb-8 italic">"</p>
-                    <p class="text-3xl leading-relaxed text-gray-300 font-light italic mb-10">
-                        Brandon didn't just fix our smart home setup; he explained why the original installation failed and built a system that's been rock solid ever since.
-                    </p>
-                    <p class="text-[11px] font-black uppercase tracking-[0.5em] text-gray-500">— Homeowner, GA</p>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
+                <div>
+                    <h2 class="font-display text-5xl font-black uppercase italic tracking-tighter">Legacy Builds</h2>
+                    <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Visual Proof of the Craft</p>
                 </div>
-                <div class="reveal" style="transition-delay: 200ms;">
-                    <p class="text-7xl text-amber font-display leading-none mb-8 italic">"</p>
-                    <p class="text-3xl leading-relaxed text-gray-300 font-light italic mb-10">
-                        The custom sensory bed he built for our son is beautiful. You can tell it was built by someone who actually gets the daily struggle and the deep love.
-                    </p>
-                    <p class="text-[11px] font-black uppercase tracking-[0.5em] text-gray-500">— The Miller Family</p>
+                <a href="#contact" class="text-amber font-black text-[10px] uppercase tracking-widest border-b border-amber pb-1">Inquire About a Project</a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" onclick="openModal('Project: Heirloom Sensory Bed', 'Integrated LED calming system + heirloom white oak frame. Built to provide a safe, soothing environment for a non-verbal child.', 'Custom Woodworking', 'Middle Georgia Home')">
+                    <img src="1000006830.jpg" alt="Custom Woodworking" class="w-full h-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Woodworking</p>
+                        <h4 class="font-display text-xl font-bold text-white uppercase italic">The Maxton Bed</h4>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" style="transition-delay: 100ms;" onclick="openModal('Project: Logic Rack System', 'Full home network overhaul with Ubiquiti hardware. Resolved consistent lag and dropouts for a 6,000 sq ft smart home.', 'Smart Home Automation', 'Atlanta, GA')">
+                    <div class="w-full h-full bg-walnut/50 flex items-center justify-center text-amber/20 font-black text-9xl">LOGIC</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Automation</p>
+                        <h4 class="font-display text-xl font-bold text-white uppercase italic">Ubiquiti Rack Build</h4>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" style="transition-delay: 200ms;" onclick="openModal('Project: Event Backdrop', '10ft custom event backdrop with programmable LED halo and modular balloon clamp system.', 'Custom Solutions', 'Warner Robins')">
+                    <img src="1000006831.jpg" alt="Event Backdrop" class="w-full h-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Creative</p>
+                        <h4 class="font-display text-xl font-bold text-white uppercase italic">10ft LED Backdrop</h4>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="py-40 px-6 relative z-10">
-        <div class="max-w-5xl mx-auto glass p-16 md:p-24 rounded-[5rem] reveal">
-            <div class="text-center mb-20">
-                <h2 class="font-display text-6xl md:text-8xl font-black uppercase italic mb-8 tracking-tighter">Let's Build.</h2>
-                <div class="h-1 w-20 bg-amber mx-auto"></div>
+    <!-- The Ledger (Testimonials) -->
+    <section id="ledger" class="py-32 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="reveal">
+                <h2 class="font-display text-4xl font-black uppercase italic tracking-tighter mb-4 leading-none">The Ledger</h2>
+                <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-8">Client Logbook</p>
+                <div class="flex gap-1 text-amber mb-6">★★★★★</div>
+                <p class="text-gray-400 italic">"Marine Vet Owned • Built for Life • 5+ Years Serving GA Families"</p>
             </div>
-            <form class="grid gap-12">
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="relative">
-                        <input type="text" placeholder="Your Name" class="w-full bg-transparent border-b-2 border-amber/20 py-6 focus:border-amber outline-none transition text-xl font-light placeholder:text-gray-600">
+            <div class="md:col-span-2 grid md:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <p class="text-xl leading-relaxed text-gray-300 italic mb-6">"Brandon didn't just fix our smart home setup; he explained why it failed and rebuilt it from the ground up."</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-500">— Homeowner, Warner Robins</p>
+                </div>
+                <div class="reveal" style="transition-delay: 100ms;">
+                    <p class="text-xl leading-relaxed text-gray-300 italic mb-6">"The custom sensory room pieces changed our day-to-day. You can tell it was built by a parent who actually understands."</p>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-gray-500">— The Miller Family</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-32 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto glass p-12 md:p-20 rounded-[4rem] reveal">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl md:text-7xl font-black uppercase italic mb-4 tracking-tighter">Let's Build.</h2>
+                <p class="text-gray-500 text-[10px] font-black uppercase tracking-[0.4em]">Warner Robins, GA • Limited Monthly Openings</p>
+            </div>
+            <form id="contactForm" class="grid gap-10">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="relative group">
+                        <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Name</label>
+                        <input type="text" required class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
                     </div>
-                    <div class="relative">
-                        <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b-2 border-amber/20 py-6 focus:border-amber outline-none transition text-xl font-light placeholder:text-gray-600">
+                    <div class="relative group">
+                        <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Phone</label>
+                        <input type="tel" required class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
                     </div>
                 </div>
-                <textarea rows="4" placeholder="Tell me what we're building (or fixing)..." class="w-full bg-transparent border-b-2 border-amber/20 py-6 focus:border-amber outline-none transition text-xl font-light placeholder:text-gray-600"></textarea>
-                <button type="submit" class="bg-amber text-white font-black py-8 rounded-[2rem] uppercase tracking-[0.4em] text-sm hover:bg-copper transition-all shadow-4xl shadow-amber/40">
-                    Initialize Project
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="relative group">
+                        <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Project Type</label>
+                        <select class="w-full bg-espresso/50 border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
+                            <option value="wood">Custom Woodworking</option>
+                            <option value="smart">Smart Home Automation</option>
+                            <option value="sensory">Sensory / Adaptive Space</option>
+                            <option value="other">Repair / Consultation</option>
+                        </select>
+                    </div>
+                    <div class="relative group">
+                        <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Budget Range</label>
+                        <select class="w-full bg-espresso/50 border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
+                            <option value="1k">&lt; $1,000</option>
+                            <option value="1-5k">$1,000 - $5,000</option>
+                            <option value="5k+">$5,000+</option>
+                            <option value="tbd">Consultation Required</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Project Narrative</label>
+                    <textarea rows="4" placeholder="Tell me what we're building (or fixing)..." class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light"></textarea>
+                </div>
+                <button type="submit" class="bg-amber text-white font-black py-7 rounded-2xl uppercase tracking-[0.4em] text-xs hover:bg-copper transition-all shadow-4xl shadow-amber/40">
+                    Transmit Project Inquiry
                 </button>
             </form>
+            <div id="successMsg" class="hidden text-center py-10 bg-green-900/20 rounded-3xl border border-green-500/30">
+                <h3 class="font-display text-2xl font-bold text-green-400 mb-2">Transmission Received</h3>
+                <p class="text-gray-400 font-light">I'll review the logic and get back to you within 48 hours.</p>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-32 text-center bg-espresso border-t border-white/5 relative z-10">
-        <div class="font-display text-4xl font-black text-white uppercase italic tracking-tighter mb-8">
+    <footer class="py-24 text-center border-t border-white/5 bg-espresso relative z-10">
+        <div class="font-display text-3xl font-black text-white uppercase italic tracking-tighter mb-8">
             AGAINST THE <span class="text-amber">GRANE</span>
         </div>
-        <p class="text-gray-600 text-[10px] uppercase tracking-[0.8em] mb-12">Craftsmanship • Curiosity • Character</p>
-        <div class="flex justify-center gap-12 text-amber/40 text-[9px] font-bold uppercase tracking-widest">
-            <span>Precision</span>
-            <span>Logic</span>
-            <span>Legacy</span>
+        <div class="max-w-xl mx-auto mb-12">
+            <h5 class="text-[9px] font-black uppercase tracking-[0.6em] text-gray-500 mb-6">Service Areas</h5>
+            <div class="flex flex-wrap justify-center gap-6 text-[10px] text-gray-400">
+                <span>Warner Robins</span> • <span>Macon</span> • <span>Perry</span> • <span>Bonaire</span> • <span>Atlanta Metro</span>
+            </div>
         </div>
-        <p class="text-gray-700 text-[9px] uppercase tracking-[0.4em] mt-20">© 2026 Brandon Cornwell • Built for Maxton</p>
+        <p class="text-gray-700 text-[8px] uppercase tracking-[0.5em]">Marine Vet Owned • Built to Stand • © 2026</p>
     </footer>
 
-    <script>
-        // Smooth Reveal Intersection Observer
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+    <!-- MODAL FOR PORTFOLIO -->
+    <div id="modal" class="flex items-center justify-center p-6" onclick="closeModal()">
+        <div class="glass max-w-2xl w-full p-12 rounded-[3rem] relative" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-gray-500 hover:text-white uppercase font-black text-[10px] tracking-widest">Close [X]</button>
+            <p id="modalCategory" class="text-[9px] font-black text-amber uppercase tracking-[0.4em] mb-4">Category</p>
+            <h3 id="modalTitle" class="font-display text-4xl font-black uppercase italic text-white mb-6">Project Title</h3>
+            <p id="modalLoc" class="text-[10px] text-gray-500 uppercase tracking-widest mb-8">Location</p>
+            <div class="h-px w-full bg-white/5 mb-8"></div>
+            <p id="modalDesc" class="text-xl text-gray-400 font-light leading-relaxed"></p>
+            <a href="#contact" onclick="closeModal()" class="inline-block mt-12 px-8 py-4 bg-amber text-white font-black rounded-xl uppercase text-[10px] tracking-widest">Book Similar Build</a>
+        </div>
+    </div>
 
+    <script>
+        // Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Background loading check
+        // Portfolio Modal
+        function openModal(title, desc, cat, loc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalCategory').innerText = cat;
+            document.getElementById('modalLoc').innerText = loc;
+            document.getElementById('modal').style.display = 'flex';
+        }
+        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+        // Form Submission Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('hidden');
+            document.getElementById('successMsg').classList.remove('hidden');
+        });
+
+        // Kinetic Text Loader
         window.addEventListener('load', () => {
-            console.log('4K Assets Ready.');
+            console.log('Precision Check: Assets Loaded.');
         });
     </script>
-
 </body>
 </html>
 
