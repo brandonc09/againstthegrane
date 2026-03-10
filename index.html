@@ -1,189 +1,251 @@
-<div id="viewport-bg"></div>
-<div id="grain-overlay"></div>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- PRIMARY SEO -->
+    <title>Against The Grane | Custom Woodworking & Smart Home Automation Warner Robins GA</title>
+    <meta name="description" content="Premium custom woodworking, smart home automation, and sensory-friendly spaces in Warner Robins and Middle Georgia. Marine Vet owned. Built to outlast.">
+    
+    <!-- LOCAL BUSINESS SCHEMA (SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Against The Grane",
+      "image": "hero-workshop.jpg",
+      "@id": "https://againstthegrane.com",
+      "url": "https://againstthegrane.com",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Warner Robins",
+        "addressRegion": "GA",
+        "postalCode": "31088",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 32.6130,
+        "longitude": -83.6242
+      },
+      "servesArea": ["Warner Robins", "Macon", "Atlanta", "Middle Georgia"],
+      "founder": "Brandon Cornwell"
+    }
+    </script>
 
-<!-- Navigation -->
-<nav class="sticky top-0 z-50 bg-espresso/80 backdrop-blur-2xl border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <div class="font-display text-2xl font-black tracking-tighter text-white uppercase italic">
-            Against The <span class="text-amber">Grane</span>
-        </div>
-        <div class="hidden lg:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
-            <a href="#about" class="hover:text-amber transition">Philosophy</a>
-            <a href="#arsenal" class="hover:text-amber transition">Arsenal</a>
-            <a href="#legacy" class="hover:text-amber transition text-white border-b border-amber">Legacy Builds</a>
-            <a href="#contact" class="hover:text-amber transition">Contact</a>
-        </div>
-        <a href="#contact" class="hidden md:block bg-amber text-white text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-copper transition-all">
-            Request Quote
-        </a>
-    </div>
-</nav>
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
 
-<!-- Hero Section -->
-<section class="min-h-[90vh] flex items-center px-6 lg:px-24">
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center w-full py-20">
-        <div class="reveal">
-            <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-amber/20 bg-amber/5 text-amber text-[9px] font-black uppercase tracking-[0.3em] mb-10">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber animate-pulse"></span>
-                Warner Robins • Macon • Atlanta Metro
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                    colors: { espresso: '#1a120e', forest: '#0f1a11', walnut: '#2d1e16', amber: '#d97706', copper: '#b35a00' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #1a120e; color: #e5e7eb; overflow-x: hidden; }
+        #viewport-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -10;
+            background-image: linear-gradient(rgba(26,18,14,0.85), rgba(26,18,14,0.95)), url('wood-bg.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        #grain-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -8;
+            background-image: url('https://www.transparenttextures.com/patterns/pollen.png');
+            opacity: 0.12; pointer-events: none;
+        }
+        .glass {
+            background: rgba(45, 30, 22, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(217, 119, 6, 0.15); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass:hover { border-color: rgba(217, 119, 6, 0.4); transform: translateY(-8px); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Kinetic Typography for Hero */
+        .kinetic-text span { display: inline-block; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Modal / Lightbox Styles */
+        #modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(15, 10, 8, 0.95); backdrop-filter: blur(10px); }
+        
+        @media (max-width: 768px) { #viewport-bg { background-attachment: scroll; } }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <div id="viewport-bg"></div>
+    <div id="grain-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-espresso/80 backdrop-blur-2xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="font-display text-2xl font-black tracking-tighter text-white uppercase italic">
+                Against The <span class="text-amber">Grane</span>
             </div>
-            <h1 class="font-display text-6xl md:text-8xl font-black mb-8 leading-[0.85] text-white tracking-tighter uppercase italic kinetic-text">
-                Building Legacy,<br/>
-                <span class="text-amber">Against the Grain.</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-12 text-gray-400 leading-relaxed max-w-xl font-light">
-                Custom woodworking and smart home integration in <span class="text-white font-bold">Warner Robins, GA</span>. I solve the puzzles others walk away from.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="#contact" class="inline-block px-12 py-6 bg-amber text-white font-black rounded-2xl hover:scale-105 transition-all text-center font-display uppercase tracking-widest shadow-2xl shadow-amber/40">
-                    Request a Quote
-                </a>
-                <div class="text-[10px] text-gray-500 font-bold uppercase tracking-widest self-center text-center sm:text-left">
-                    Marine Vet Owned • Built to Outlast
+            <div class="hidden lg:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+                <a href="#about" class="hover:text-amber transition">Philosophy</a>
+                <a href="#arsenal" class="hover:text-amber transition">Arsenal</a>
+                <a href="#legacy" class="hover:text-amber transition text-white border-b border-amber">Legacy Builds</a>
+                <a href="#contact" class="hover:text-amber transition">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:block bg-amber text-white text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-copper transition-all">
+                Request Quote
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-[90vh] flex items-center px-6 lg:px-24">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center w-full py-20">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-amber/20 bg-amber/5 text-amber text-[9px] font-black uppercase tracking-[0.3em] mb-10">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber animate-pulse"></span>
+                    Warner Robins • Macon • Atlanta Metro
+                </div>
+                <h1 class="font-display text-6xl md:text-8xl font-black mb-8 leading-[0.85] text-white tracking-tighter uppercase italic kinetic-text">
+                    Building Legacy,<br/>
+                    <span class="text-amber">Against the Grain.</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 text-gray-400 leading-relaxed max-w-xl font-light">
+                    Custom woodworking and smart home integration in <span class="text-white font-bold">Warner Robins, GA</span>. I solve the puzzles others walk away from.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#contact" class="inline-block px-12 py-6 bg-amber text-white font-black rounded-2xl hover:scale-105 transition-all text-center font-display uppercase tracking-widest shadow-2xl shadow-amber/40">
+                        Request a Quote
+                    </a>
+                    <div class="text-[10px] text-gray-500 font-bold uppercase tracking-widest self-center text-center sm:text-left">
+                        Marine Vet Owned • Built to Outlast
+                    </div>
+                </div>
+            </div>
+            <div class="relative group reveal" style="transition-delay: 200ms;">
+                <div class="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
+                    <img src="hero-workshop.jpg" alt="Brandon Cornwell Workshop" class="w-full aspect-[4/5] object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-1000" loading="eager">
                 </div>
             </div>
         </div>
-        <div class="relative group reveal" style="transition-delay: 200ms;">
-            <div class="relative rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
-                <img src="hero-workshop.jpg" alt="Brandon Cornwell Workshop" class="w-full aspect-[4/5] object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-1000" loading="eager">
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- Philosophy -->
-<section id="about" class="py-32 bg-forest/20 relative z-10 border-y border-white/5">
-    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-        <div class="reveal">
-            <h2 class="font-display text-4xl md:text-6xl font-black uppercase italic mb-8 tracking-tighter text-white leading-none">Who's making the sawdust?</h2>
-            <div class="space-y-6 text-lg text-gray-400 font-light leading-relaxed">
-                <p>I’m Brandon. Marine Corps veteran, solo dad, and a guy who runs on high-octane coffee and <span class="text-amber italic font-medium">Jedi-level patience</span>.</p>
-                <p>I don't just "handyman" my way through a job. I find the logic. I fix the root. Whether it's a sensory bed for my son, Maxton, or a 4K home theater network, I build it as a legacy.</p>
-            </div>
-        </div>
-        <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 200ms;">
-            <h4 class="text-amber text-xs font-black uppercase tracking-[0.4em] mb-4">The Promise</h4>
-            <p class="text-2xl italic text-white font-display font-medium leading-relaxed">"If I can't fix it, I'll figure out how it broke – and turn that into something better."</p>
-        </div>
-    </div>
-</section>
-
-<!-- The Arsenal -->
-<section id="arsenal" class="py-32 px-6 relative z-10">
-    <div class="max-w-7xl mx-auto">
-        <div class="mb-20 reveal">
-            <h2 class="font-display text-5xl md:text-8xl font-black uppercase italic mb-6 tracking-tighter text-white">The Arsenal</h2>
-            <p class="text-gray-500 tracking-[0.5em] uppercase text-xs font-black">Middle Georgia's Technical Builder</p>
-        </div>
-        <div class="grid lg:grid-cols-3 gap-8">
-            <div class="glass p-12 rounded-[3rem] reveal cursor-pointer hover:bg-walnut/20" style="transition-delay: 100ms;" onclick="document.getElementById('legacy').scrollIntoView({behavior: 'smooth'});">
-                <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Woodworking</h3>
-                <p class="text-gray-400 font-light mb-8">Heirloom furniture and custom solutions. Built with the same precision I used in crash-fire rescue.</p>
-                <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
-                    <li>• Custom Built-ins</li>
-                    <li>• Live Edge Design</li>
-                    <li>• Structural Repair</li>
-                </ul>
-            </div>
-            <div class="glass p-12 rounded-[3rem] reveal cursor-pointer hover:bg-walnut/20" style="transition-delay: 200ms;" onclick="document.getElementById('legacy').scrollIntoView({behavior: 'smooth'});">
-                <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Smart Logic</h3>
-                <p class="text-gray-400 font-light mb-8">Home automation that actually works. Secure networking, lighting, and invisible tech integration.</p>
-                <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
-                    <li>• Ubiquiti Networking</li>
-                    <li>• Smart Lighting Scapes</li>
-                    <li>• Logic Troubleshooting</li>
-                </ul>
-            </div>
-            <div class="glass p-12 rounded-[3rem] reveal cursor-pointer hover:bg-walnut/20" style="transition-delay: 300ms;" onclick="document.getElementById('legacy').scrollIntoView({behavior: 'smooth'});">
-                <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Sensory Support</h3>
-                <p class="text-gray-400 font-light mb-8">Adaptive spaces designed for neurodivergent needs. Built with empathy for families like mine.</p>
-                <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
-                    <li>• Autism-Friendly Rooms</li>
-                    <li>• Calming Lighting</li>
-                    <li>• Safety-Milled Edges</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- LEGACY BUILDS (Portfolio) -->
-<section id="legacy" class="py-32 bg-black/30 relative z-10">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
-            <div>
-                <h2 class="font-display text-5xl font-black uppercase italic tracking-tighter">Legacy Builds</h2>
-                <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Visual Proof of the Craft</p>
-            </div>
-            <a href="#contact" class="text-amber font-black text-[10px] uppercase tracking-widest border-b border-amber pb-1">Inquire About a Project</a>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Project 1 -->
-            <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" onclick="openModal('The Maxton Bed', 'Integrated LED calming system + heirloom white oak frame. Built to provide a safe, soothing environment for a non-verbal child. (Before: Standard crib causing safety issues; After: Custom adaptive bed with rounded edges and sensory integration.)', 'Custom Woodworking', 'Middle Georgia Home')">
-                <img src="1000006830.jpg" alt="Custom Woodworking - The Maxton Bed" class="w-full h-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-110" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
-                <div class="absolute bottom-10 left-10">
-                    <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Woodworking</p>
-                    <h4 class="font-display text-xl font-bold text-white uppercase italic">The Maxton Bed</h4>
-                    <p class="text-[10px] text-gray-400 mt-2">Heirloom oak frame with LED calming system</p>
+    <!-- Philosophy -->
+    <section id="about" class="py-32 bg-forest/20 relative z-10 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h2 class="font-display text-4xl md:text-6xl font-black uppercase italic mb-8 tracking-tighter text-white leading-none">Who's making the sawdust?</h2>
+                <div class="space-y-6 text-lg text-gray-400 font-light leading-relaxed">
+                    <p>I’m Brandon. Marine Corps veteran, solo dad, and a guy who runs on high-octane coffee and <span class="text-amber italic font-medium">Jedi-level patience</span>.</p>
+                    <p>I don't just "handyman" my way through a job. I find the logic. I fix the root. Whether it's a sensory bed for my son, Maxton, or a 4K home theater network, I build it as a legacy.</p>
                 </div>
             </div>
-            <!-- Project 2 -->
-            <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" style="transition-delay: 100ms;" onclick="openModal('Ubiquiti Rack Build', 'Full home network overhaul with Ubiquiti hardware. Resolved consistent lag and dropouts for a 6,000 sq ft smart home. (Before: Unreliable WiFi; After: Seamless enterprise-grade network.)', 'Smart Home Automation', 'Atlanta, GA')">
-                <div class="w-full h-full bg-walnut/50 flex items-center justify-center text-amber/20 font-black text-9xl">LOGIC</div>
-                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
-                <div class="absolute bottom-10 left-10">
-                    <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Automation</p>
-                    <h4 class="font-display text-xl font-bold text-white uppercase italic">Ubiquiti Rack Build</h4>
-                    <p class="text-[10px] text-gray-400 mt-2">Full network overhaul for lag-free smart home</p>
-                </div>
+            <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 200ms;">
+                <h4 class="text-amber text-xs font-black uppercase tracking-[0.4em] mb-4">The Promise</h4>
+                <p class="text-2xl italic text-white font-display font-medium leading-relaxed">"If I can't fix it, I'll figure out how it broke – and turn that into something better."</p>
             </div>
-            <!-- Project 3 -->
-            <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" style="transition-delay: 200ms;" onclick="openModal('10ft LED Backdrop', '10ft custom event backdrop with programmable LED halo and modular balloon clamp system. (Before: Basic setup; After: Immersive, customizable event feature.)', 'Custom Solutions', 'Warner Robins')">
-                <img src="1000006831.jpg" alt="Event Backdrop - 10ft LED" class="w-full h-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-110" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
-                <div class="absolute bottom-10 left-10">
-                    <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Creative</p>
-                    <h4 class="font-display text-xl font-bold text-white uppercase italic">10ft LED Backdrop</h4>
-                    <p class="text-[10px] text-gray-400 mt-2">Programmable LEDs with modular clamps</p>
-                </div>
+        </div>
+    </section>
+
+    <!-- The Arsenal -->
+    <section id="arsenal" class="py-32 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 reveal">
+                <h2 class="font-display text-5xl md:text-8xl font-black uppercase italic mb-6 tracking-tighter text-white">The Arsenal</h2>
+                <p class="text-gray-500 tracking-[0.5em] uppercase text-xs font-black">Middle Georgia's Technical Builder</p>
             </div>
-            <!-- Additional Project 4 (Placeholder) -->
-            <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" style="transition-delay: 300ms;" onclick="openModal('Live Edge Table', 'Custom live edge walnut table with integrated smart lighting. Durable epoxy finish for family gatherings. (Before: Standard table; After: Heirloom piece with tech integration.)', 'Custom Woodworking', 'Macon, GA')">
-                <div class="w-full h-full bg-walnut/50 flex items-center justify-center text-amber/20 font-black text-9xl">WOOD</div>
-                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
-                <div class="absolute bottom-10 left-10">
-                    <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Woodworking</p>
-                    <h4 class="font-display text-xl font-bold text-white uppercase italic">Live Edge Table</h4>
-                    <p class="text-[10px] text-gray-400 mt-2">Walnut with smart lighting integration</p>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 100ms;">
+                    <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Woodworking</h3>
+                    <p class="text-gray-400 font-light mb-8">Heirloom furniture and custom solutions. Built with the same precision I used in crash-fire rescue.</p>
+                    <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
+                        <li>• Custom Built-ins</li>
+                        <li>• Live Edge Design</li>
+                        <li>• Structural Repair</li>
+                    </ul>
                 </div>
-            </div>
-            <!-- Additional Project 5 (Placeholder) -->
-            <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" style="transition-delay: 400ms;" onclick="openModal('Sensory Room Overhaul', 'Full adaptive room with calming lights, soft milled edges, and soundproof panels. Designed for neurodivergent comfort. (Before: Standard room; After: Therapeutic space.)', 'Sensory Support', 'Warner Robins, GA')">
-                <div class="w-full h-full bg-walnut/50 flex items-center justify-center text-amber/20 font-black text-9xl">SENSORY</div>
-                <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
-                <div class="absolute bottom-10 left-10">
-                    <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Sensory</p>
-                    <h4 class="font-display text-xl font-bold text-white uppercase italic">Sensory Room Overhaul</h4>
-                    <p class="text-[10px] text-gray-400 mt-2">Calming lights and safety features</p>
+                <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 200ms;">
+                    <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Smart Logic</h3>
+                    <p class="text-gray-400 font-light mb-8">Home automation that actually works. Secure networking, lighting, and invisible tech integration.</p>
+                    <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
+                        <li>• Ubiquiti Networking</li>
+                        <li>• Smart Lighting Scapes</li>
+                        <li>• Logic Troubleshooting</li>
+                    </ul>
+                </div>
+                <div class="glass p-12 rounded-[3rem] reveal" style="transition-delay: 300ms;">
+                    <h3 class="font-display text-2xl font-black text-white uppercase mb-4">Sensory Support</h3>
+                    <p class="text-gray-400 font-light mb-8">Adaptive spaces designed for neurodivergent needs. Built with empathy for families like mine.</p>
+                    <ul class="text-[10px] font-bold text-amber space-y-2 uppercase tracking-widest">
+                        <li>• Autism-Friendly Rooms</li>
+                        <li>• Calming Lighting</li>
+                        <li>• Safety-Milled Edges</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- The Ledger (Testimonials) -->
-<section id="ledger" class="py-32 px-6 relative z-10">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
-        <div class="reveal">
-            <h2 class="font-display text-4xl font-black uppercase italic tracking-tighter mb-4 leading-none">The Ledger</h2>
-            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-8">Client Logbook</p>
-            <div class="flex gap-1 text-amber mb-6">★★★★★</div>
-            <p class="text-gray-400 italic">"Marine Vet Owned • Built for Life • 5+ Years Serving GA Families"</p>
-            <a href="https://g.co/kgs/EXAMPLE" target="_blank" class="text-amber text-[10px] font-black uppercase tracking-widest block mt-4 hover:underline">Leave a Review on Google</a>
+    <!-- LEGACY BUILDS (Portfolio) -->
+    <section id="legacy" class="py-32 bg-black/30 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
+                <div>
+                    <h2 class="font-display text-5xl font-black uppercase italic tracking-tighter">Legacy Builds</h2>
+                    <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Visual Proof of the Craft</p>
+                </div>
+                <a href="#contact" class="text-amber font-black text-[10px] uppercase tracking-widest border-b border-amber pb-1">Inquire About a Project</a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" onclick="openModal('Project: Heirloom Sensory Bed', 'Integrated LED calming system + heirloom white oak frame. Built to provide a safe, soothing environment for a non-verbal child.', 'Custom Woodworking', 'Middle Georgia Home')">
+                    <img src="1000006830.jpg" alt="Custom Woodworking" class="w-full h-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Woodworking</p>
+                        <h4 class="font-display text-xl font-bold text-white uppercase italic">The Maxton Bed</h4>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" style="transition-delay: 100ms;" onclick="openModal('Project: Logic Rack System', 'Full home network overhaul with Ubiquiti hardware. Resolved consistent lag and dropouts for a 6,000 sq ft smart home.', 'Smart Home Automation', 'Atlanta, GA')">
+                    <div class="w-full h-full bg-walnut/50 flex items-center justify-center text-amber/20 font-black text-9xl">LOGIC</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Automation</p>
+                        <h4 class="font-display text-xl font-bold text-white uppercase italic">Ubiquiti Rack Build</h4>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer reveal" style="transition-delay: 200ms;" onclick="openModal('Project: Event Backdrop', '10ft custom event backdrop with programmable LED halo and modular balloon clamp system.', 'Custom Solutions', 'Warner Robins')">
+                    <img src="1000006831.jpg" alt="Event Backdrop" class="w-full h-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[9px] font-black text-amber uppercase tracking-widest mb-1">Creative</p>
+                        <h4 class="font-display text-xl font-bold text-white uppercase italic">10ft LED Backdrop</h4>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="md:col-span-2 grid md:grid-cols-2 gap-12">
+    </section>
+
+    <!-- The Ledger (Testimonials) -->
+    <section id="ledger" class="py-32 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="reveal">
+                <h2 class="font-display text-4xl font-black uppercase italic tracking-tighter mb-4 leading-none">The Ledger</h2>
+                <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-8">Client Logbook</p>
+                <div class="flex gap-1 text-amber mb-6">★★★★★</div>
+                <p class="text-gray-400 italic">"Marine Vet Owned • Built for Life • 5+ Years Serving GA Families"</p>
+            </div>
             <div class="md:col-span-2 grid md:grid-cols-2 gap-12">
                 <div class="reveal">
                     <p class="text-xl leading-relaxed text-gray-300 italic mb-6">"Brandon didn't just fix our smart home setup; he explained why it failed and rebuilt it from the ground up."</p>
@@ -195,62 +257,117 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Contact Form -->
-<section id="contact" class="py-32 px-6 relative z-10">
-    <div class="max-w-4xl mx-auto glass p-12 md:p-20 rounded-[4rem] reveal">
-        <div class="text-center mb-16">
-            <h2 class="font-display text-5xl md:text-7xl font-black uppercase italic mb-4 tracking-tighter">Let's Build.</h2>
-            <p class="text-gray-500 text-[10px] font-black uppercase tracking-[0.4em]">Warner Robins, GA • Limited Monthly Openings</p>
+    <!-- Contact Form -->
+    <section id="contact" class="py-32 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto glass p-12 md:p-20 rounded-[4rem] reveal">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl md:text-7xl font-black uppercase italic mb-4 tracking-tighter">Let's Build.</h2>
+                <p class="text-gray-500 text-[10px] font-black uppercase tracking-[0.4em]">Warner Robins, GA • Limited Monthly Openings</p>
+            </div>
+            <form id="contactForm" class="grid gap-10">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="relative group">
+                        <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Name</label>
+                        <input type="text" required class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
+                    </div>
+                    <div class="relative group">
+                        <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Phone</label>
+                        <input type="tel" required class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="relative group">
+                        <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Project Type</label>
+                        <select class="w-full bg-espresso/50 border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
+                            <option value="wood">Custom Woodworking</option>
+                            <option value="smart">Smart Home Automation</option>
+                            <option value="sensory">Sensory / Adaptive Space</option>
+                            <option value="other">Repair / Consultation</option>
+                        </select>
+                    </div>
+                    <div class="relative group">
+                        <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Budget Range</label>
+                        <select class="w-full bg-espresso/50 border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
+                            <option value="1k">&lt; $1,000</option>
+                            <option value="1-5k">$1,000 - $5,000</option>
+                            <option value="5k+">$5,000+</option>
+                            <option value="tbd">Consultation Required</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Project Narrative</label>
+                    <textarea rows="4" placeholder="Tell me what we're building (or fixing)..." class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light"></textarea>
+                </div>
+                <button type="submit" class="bg-amber text-white font-black py-7 rounded-2xl uppercase tracking-[0.4em] text-xs hover:bg-copper transition-all shadow-4xl shadow-amber/40">
+                    Transmit Project Inquiry
+                </button>
+            </form>
+            <div id="successMsg" class="hidden text-center py-10 bg-green-900/20 rounded-3xl border border-green-500/30">
+                <h3 class="font-display text-2xl font-bold text-green-400 mb-2">Transmission Received</h3>
+                <p class="text-gray-400 font-light">I'll review the logic and get back to you within 48 hours.</p>
+            </div>
         </div>
-        <form id="contactForm" class="grid gap-10">
-            <input type="text" name="honeypot" style="display:none;" tabindex="-1" autocomplete="off"> <!-- Honeypot for spam -->
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="relative group">
-                    <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Name</label>
-                    <input type="text" required class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
-                </div>
-                <div class="relative group">
-                    <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Phone</label>
-                    <input type="tel" required class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
-                </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-24 text-center border-t border-white/5 bg-espresso relative z-10">
+        <div class="font-display text-3xl font-black text-white uppercase italic tracking-tighter mb-8">
+            AGAINST THE <span class="text-amber">GRANE</span>
+        </div>
+        <div class="max-w-xl mx-auto mb-12">
+            <h5 class="text-[9px] font-black uppercase tracking-[0.6em] text-gray-500 mb-6">Service Areas</h5>
+            <div class="flex flex-wrap justify-center gap-6 text-[10px] text-gray-400">
+                <span>Warner Robins</span> • <span>Macon</span> • <span>Perry</span> • <span>Bonaire</span> • <span>Atlanta Metro</span>
             </div>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="relative group">
-                    <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Project Type</label>
-                    <select class="w-full bg-espresso/50 border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
-                        <option value="wood">Custom Woodworking</option>
-                        <option value="smart">Smart Home Automation</option>
-                        <option value="sensory">Sensory / Adaptive Space</option>
-                        <option value="other">Repair / Consultation</option>
-                    </select>
-                </div>
-                <div class="relative group">
-                    <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Budget Range</label>
-                    <select class="w-full bg-espresso/50 border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light">
-                        <option value="1k">&lt; $1,000</option>
-                        <option value="1-5k">$1,000 - $5,000</option>
-                        <option value="5k+">$5,000+</option>
-                        <option value="tbd">Consultation Required</option>
-                    </select>
-                </div>
-            </div>
-            <div class="relative group">
-                <label class="block text-[9px] font-black text-amber uppercase tracking-widest mb-2 opacity-60 group-focus-within:opacity-100 transition">Project Narrative</label>
-                <textarea rows="4" placeholder="Tell me what we're building (or fixing)..." class="w-full bg-transparent border-b-2 border-white/10 py-3 focus:border-amber outline-none transition text-lg font-light"></textarea>
-            </div>
-            <button type="submit" class="bg-amber text-white font-black py-7 rounded-2xl uppercase tracking-[0.4em] text-xs hover:bg-copper transition-all shadow-4xl shadow-amber/40">
-                Transmit Project Inquiry
-            </button>
-        </form>
-        <div id="successMsg" class="hidden text-center py-10 bg-green-900/20 rounded-3xl border border-green-500/30">
-            <h3 class="font-display text-2xl font-bold text-green-400 mb-2">Transmission Received</h3>
-            <p class="text-gray-400 font-light">I'll review the logic and get back to you within 48 hours.</p>
+        </div>
+        <p class="text-gray-700 text-[8px] uppercase tracking-[0.5em]">Marine Vet Owned • Built to Stand • © 2026</p>
+    </footer>
+
+    <!-- MODAL FOR PORTFOLIO -->
+    <div id="modal" class="flex items-center justify-center p-6" onclick="closeModal()">
+        <div class="glass max-w-2xl w-full p-12 rounded-[3rem] relative" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-gray-500 hover:text-white uppercase font-black text-[10px] tracking-widest">Close [X]</button>
+            <p id="modalCategory" class="text-[9px] font-black text-amber uppercase tracking-[0.4em] mb-4">Category</p>
+            <h3 id="modalTitle" class="font-display text-4xl font-black uppercase italic text-white mb-6">Project Title</h3>
+            <p id="modalLoc" class="text-[10px] text-gray-500 uppercase tracking-widest mb-8">Location</p>
+            <div class="h-px w-full bg-white/5 mb-8"></div>
+            <p id="modalDesc" class="text-xl text-gray-400 font-light leading-relaxed"></p>
+            <a href="#contact" onclick="closeModal()" class="inline-block mt-12 px-8 py-4 bg-amber text-white font-black rounded-xl uppercase text-[10px] tracking-widest">Book Similar Build</a>
         </div>
     </div>
-</section>
 
-<!-- Footer -->
-<footer class="py-24 text-center border-t border-white/5 bg-esp
+    <script>
+        // Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Portfolio Modal
+        function openModal(title, desc, cat, loc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalCategory').innerText = cat;
+            document.getElementById('modalLoc').innerText = loc;
+            document.getElementById('modal').style.display = 'flex';
+        }
+        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+        // Form Submission Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('hidden');
+            document.getElementById('successMsg').classList.remove('hidden');
+        });
+
+        // Kinetic Text Loader
+        window.addEventListener('load', () => {
+            console.log('Precision Check: Assets Loaded.');
+        });
+    </script>
+</body>
+</html>
+
